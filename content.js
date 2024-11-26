@@ -52,9 +52,13 @@ window.addEventListener("load", async function () {
 });
 
 async function addSubtitles(lang, rowContainers) {
-  const languageContainer = Array.from(rowContainers).find((container) =>
-    container.innerText.includes(lang)
-  );
+  let languageContainer;
+  for (var i = rowContainers.length >>> 0; i--; ) {
+    if (rowContainers[i].innerText.includes(lang)) {
+      languageContainer = rowContainers[i];
+      break;
+    }
+  }
 
   const hoverContainer = await retryOnFailure(
     () => languageContainer.querySelector("#status-info"),
